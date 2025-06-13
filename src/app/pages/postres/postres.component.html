@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Postres</h2>
+
+  <div *ngFor="let receta of recetas; let i = index" class="card mb-3">
+    <div 
+      class="card-header d-flex justify-content-between align-items-center"
+      (click)="toggleDetalle(i)"
+      style="cursor: pointer;"
+    >
+      <h5 class="mb-0">{{ receta.nombre }}</h5>
+      <span>
+        <i *ngIf="isVisible(i)" class="bi bi-chevron-up"></i>
+        <i *ngIf="!isVisible(i)" class="bi bi-chevron-down"></i>
+      </span>
+    </div>
+
+    <div *ngIf="isVisible(i)" class="card-body">
+      <img [src]="receta.imagen" [alt]="receta.nombre" class="img-fluid mb-3" />
+      <ol>
+        <li *ngFor="let paso of receta.pasos">{{ paso }}</li>
+      </ol>
+    </div>
+  </div>
+</div>
